@@ -32,12 +32,12 @@ android {
             storePassword '140897'
         }
     }
-    compileSdkVersion 27
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "ru.visualmath.android"
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
