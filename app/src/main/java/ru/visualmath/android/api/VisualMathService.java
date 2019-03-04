@@ -17,7 +17,7 @@ import ru.visualmath.android.api.model.UserInfo;
 
 interface VisualMathService {
 
-    String URL = "http://visualmath.ru/api/";
+    String URL = "https://visualmath.bennydictor.tk/api/";
 
     @POST("login")
     Single<User> login(@Body Map<String, String> data);
