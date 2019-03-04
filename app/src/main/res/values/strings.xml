@@ -2,13 +2,18 @@
     <string name="app_name">VisualMath</string>
 
     <string name="login">Логин</string>
+    <string name="last_name">Фаиилия</string>
+    <string name="first_name">Имя</string>
+    <string name="middle_name">Отчество</string>
+    <string name="email">Email</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Повторите пароль</string>
-    <string name="institution">Учебное заведение</string>
-    <string name="group">Класс/Группа</string>
+    <string name="university">Учебное заведение</string>
+    <string name="university_group">Класс/Группа</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="sign_in">Войти</string>
     <string name="sign_out">Выйти</string>
+    <string name="registration">Регистрация</string>
     <string name="cancel">Отмена</string>
 
     <string name="error">Ошибка</string>
