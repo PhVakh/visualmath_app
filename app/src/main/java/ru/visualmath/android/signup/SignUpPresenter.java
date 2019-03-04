@@ -26,7 +26,7 @@ public class SignUpPresenter extends MvpPresenter<SignUpView> {
         api.createUser(email, first_name, last_name, middle_name, password, university, university_group)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(user -> getViewState().signIn(user.getUsername(), password), throwable -> {
+                .subscribe(user -> getViewState().signIn(user.getEmail(), password), throwable -> {
                     if (throwable instanceof HttpException) {
                         HttpException httpException = (HttpException) throwable;
                         if (httpException.code() == 500) {
