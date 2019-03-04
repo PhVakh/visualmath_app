@@ -26,8 +26,8 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
     @InjectPresenter
     LoginPresenter presenter;
 
-    @BindView(R.id.name)
-    EditText usernameEditText;
+    @BindView(R.id.email)
+    EditText emailEditText;
 
     @BindView(R.id.password)
     EditText passwordEditText;
@@ -50,7 +50,7 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
         ButterKnife.bind(this);
 
         Observable.combineLatest(
-                RxTextView.textChanges(usernameEditText),
+                RxTextView.textChanges(emailEditText),
                 RxTextView.textChanges(passwordEditText),
                 (username, password) -> username.length() > 0 && password.length() > 0
         ).subscribe(loginButton::setEnabled);
@@ -94,7 +94,7 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
     }
 
     private void setFormEnabled(boolean enabled) {
-        usernameEditText.setEnabled(enabled);
+        emailEditText.setEnabled(enabled);
         passwordEditText.setEnabled(enabled);
         loginButton.setEnabled(enabled);
     }
@@ -115,9 +115,9 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
 
     @OnClick(R.id.loginButton)
     public void onLoginClicked() {
-        String nameValue = usernameEditText.getText().toString();
+        String emailValue = emailEditText.getText().toString();
         String passwordValue = passwordEditText.getText().toString();
-        presenter.onLogin(nameValue, passwordValue);
+        presenter.onLogin(emailValue, passwordValue);
     }
 
     @OnClick(R.id.signUpButton)
@@ -133,10 +133,10 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView {
             return;
         }
 
-        String username = data.getStringExtra("username");
+        String username = data.getStringExtra("email");
         String password = data.getStringExtra("password");
 
-        usernameEditText.setText(username);
+        emailEditText.setText(username);
         passwordEditText.setText(password);
 
         loginButton.callOnClick();
