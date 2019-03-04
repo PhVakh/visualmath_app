@@ -66,9 +66,9 @@ public class VisualMathApi {
         return picasso;
     }
 
-    public Single<User> login(String name, String password) {
+    public Single<User> login(String email, String password) {
         Map<String, String> data = new HashMap<>();
-        data.put("name", name);
+        data.put("email", email);
         data.put("password", password);
         return service.login(data);
     }
