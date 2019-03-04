@@ -21,8 +21,17 @@ public class SignUpActivity extends MvpAppCompatActivity implements SignUpView {
     @InjectPresenter
     SignUpPresenter presenter;
 
-    @BindView(R.id.username)
-    EditText usernameEditText;
+    @BindView(R.id.email)
+    EditText emailEditText;
+
+    @BindView(R.id.first_name)
+    EditText firstNameEditText;
+
+    @BindView(R.id.last_name)
+    EditText lastNameEditText;
+
+    @BindView(R.id.middle_name)
+    EditText middleNameEditText;
 
     @BindView(R.id.password)
     EditText passwordEditText;
@@ -30,11 +39,11 @@ public class SignUpActivity extends MvpAppCompatActivity implements SignUpView {
     @BindView(R.id.passwordConfirm)
     EditText passwordConfirmEditText;
 
-    @BindView(R.id.institution)
-    EditText institutionEditText;
+    @BindView(R.id.university)
+    EditText universityEditText;
 
-    @BindView(R.id.group)
-    EditText groupEditText;
+    @BindView(R.id.university_group)
+    EditText universityGroupEditText;
 
     @BindView(R.id.signUp)
     Button signUpButton;
@@ -48,23 +57,29 @@ public class SignUpActivity extends MvpAppCompatActivity implements SignUpView {
         ButterKnife.bind(this);
 
         Observable.combineLatest(
-                RxTextView.textChanges(usernameEditText),
+                RxTextView.textChanges(emailEditText),
+                RxTextView.textChanges(lastNameEditText),
+                RxTextView.textChanges(firstNameEditText),
+                RxTextView.textChanges(middleNameEditText),
                 RxTextView.textChanges(passwordEditText),
                 RxTextView.textChanges(passwordConfirmEditText),
-                RxTextView.textChanges(institutionEditText),
-                RxTextView.textChanges(groupEditText),
-                (login, password, passwordConfirm, institution, group) -> login.length() > 0 &&
-                        password.length() > 0 && passwordConfirm.length() > 0 &&
-                        institution.length() > 0 && group.length() > 0
+                RxTextView.textChanges(universityEditText),
+                RxTextView.textChanges(universityGroupEditText),
+                (email, last_name, first_name, middle_name, password, passwordConfirm, institution, group) -> email.length() > 0 &&
+                        last_name.length() > 0 && first_name.length() > 0 && middle_name.length() > 0 && password.length() > 0 &&
+                        passwordConfirm.length() > 0 && institution.length() > 0 && group.length() > 0
         ).subscribe(signUpButton::setEnabled);
 
         signUpButton.setOnClickListener(v -> {
-            String username = usernameEditText.getText().toString();
+            String email = emailEditText.getText().toString();
+            String last_name = lastNameEditText.getText().toString();
+            String first_name = firstNameEditText.getText().toString();
+            String middle_name = middleNameEditText.getText().toString();
             String password = passwordEditText.getText().toString();
             String passwordConfirm = passwordConfirmEditText.getText().toString();
-            String institution = institutionEditText.getText().toString();
-            String group = groupEditText.getText().toString();
-            presenter.onSignUp(username, password, passwordConfirm, institution, group);
+            String university = universityEditText.getText().toString();
+            String university_group = universityGroupEditText.getText().toString();
+            presenter.onSignUp(email, first_name, last_name, middle_name, password, passwordConfirm, university, university_group);
         });
     }
 

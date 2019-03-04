@@ -17,13 +17,13 @@ public class SignUpPresenter extends MvpPresenter<SignUpView> {
 
     private final VisualMathApi api = VisualMathApi.getApi();
 
-    void onSignUp(String username, String password, String passwordConfirm, String institution, String group) {
+    void onSignUp(String email, String first_name, String last_name, String middle_name, String password, String passwordConfirm, String university, String university_group) {
         if (!password.equals(passwordConfirm)) {
             getViewState().showError("Пароли не совпадают!");
             return;
         }
 
-        api.createUser(username, password, institution, group)
+        api.createUser(email, first_name, last_name, middle_name, password, university, university_group)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(user -> getViewState().signIn(user.getUsername(), password), throwable -> {
