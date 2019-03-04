@@ -91,13 +91,16 @@ public class VisualMathApi {
         return service.loadQuestionBlock(data);
     }
 
-    public Single<User> createUser(String login, String password, String institution, String group) {
+    public Single<User> createUser(String email, String first_name, String last_name, String middle_name,
+            String password, String university, String university_group) {
         Map<String, String> data = new HashMap<>();
-        data.put("login", login);
+        data.put("login", email);
+        data.put("first_name", first_name);
+        data.put("last_name", last_name);
+        data.put("middle_name", middle_name);
         data.put("password", password);
-        data.put("institution", institution);
-        data.put("group", group);
-        data.put("access", "student");
+        data.put("university", university);
+        data.put("university_group", university_group);
         return service.createUser(data);
     }
 
